@@ -32,13 +32,13 @@ export function FounderAbout({ onBack }: { onBack: () => void }) {
               <div className="absolute -inset-4 border border-white/10 rounded-[4rem] group-hover:border-accent/40 transition-colors duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-transparent to-transparent z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" 
+                src="/Founder.jpg" 
                 alt="Founder" 
                 className="w-full h-full object-cover rounded-[3.5rem] grayscale group-hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute bottom-12 left-12 z-20">
-                <span className="text-accent text-xs font-black uppercase tracking-[0.5em] block mb-2">Systems Architect</span>
-                <h1 className="text-5xl font-black text-white italic tracking-tighter uppercase">ARJUN <br /> REDDY</h1>
+                <span className="text-accent text-xs font-black uppercase tracking-[0.5em] block mb-2">Content Creator</span>
+                <h1 className="text-5xl font-black text-white italic tracking-tighter uppercase">Haseeb</h1>
               </div>
             </motion.div>
 
