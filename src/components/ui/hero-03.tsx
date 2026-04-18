@@ -1,5 +1,5 @@
 import { ArrowRight, CheckCircle2, Globe2, Heart, MessageCircle, Sparkles } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const proofPoints = [
   "Performance creative",
@@ -68,9 +68,12 @@ export function HeroSection03() {
           >
             <div className="relative min-h-[420px] overflow-hidden rounded-lg border border-card-border bg-secondary">
               <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1600&auto=format&fit=crop"
+                src="/stock/hero/growth-team.jpg"
                 alt="Growth team planning digital campaigns"
                 className="absolute inset-0 h-full w-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "/stock/placeholder.svg";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-text-main/80 via-text-main/20 to-transparent" />
 

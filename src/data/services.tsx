@@ -17,6 +17,12 @@ export type ServiceItem = {
   desc: string;
   icon: React.ReactNode;
   accent: string;
+  heroImage?: string;
+  audience?: string[];
+  platforms?: string[];
+  deliverables?: string[];
+  metrics?: string[];
+  assets?: string[];
   subServices: {
     title: string;
     slug: string;
@@ -140,3 +146,78 @@ export const getServiceBySlug = (slug: string) =>
 
 export const getSubServiceBySlug = (serviceSlug: string, subServiceSlug?: string) =>
   getServiceBySlug(serviceSlug)?.subServices.find((subService) => subService.slug === subServiceSlug);
+
+export const servicePageAddons: Record<string, Required<Pick<ServiceItem, 'heroImage' | 'audience' | 'platforms' | 'deliverables' | 'metrics' | 'assets'>>> = {
+  'corporate-digital-marketing': {
+    heroImage: '/stock/services/corporate-digital-marketing.jpg',
+    audience: ['Enterprise teams', 'Founder-led companies', 'Regional brands', 'Multi-location businesses'],
+    platforms: ['Google', 'Meta', 'LinkedIn', 'CRM', 'Analytics'],
+    deliverables: ['Growth roadmap', 'Campaign calendar', 'Offer messaging', 'Executive dashboard', 'Monthly optimization board'],
+    metrics: ['Qualified pipeline', 'CAC trend', 'Lead-to-sale rate', 'Channel contribution'],
+    assets: ['Market positioning canvas', 'Funnel map', 'Creative testing matrix', 'Leadership reporting deck'],
+  },
+  'seo-company-hyderabad': {
+    heroImage: '/stock/services/seo-company-hyderabad.jpg',
+    audience: ['Local businesses', 'Healthcare brands', 'Education institutes', 'B2B service firms'],
+    platforms: ['Google Search Console', 'Google Business Profile', 'GA4', 'Schema', 'Technical crawl tools'],
+    deliverables: ['Technical SEO audit', 'Keyword architecture', 'Location page plan', 'Content briefs', 'Authority roadmap'],
+    metrics: ['Organic traffic', 'Map visibility', 'Ranking movement', 'Organic enquiries'],
+    assets: ['SEO health scorecard', 'Content cluster map', 'Local listing checklist', 'Competitor gap report'],
+  },
+  'ppc-services-hyderabad': {
+    heroImage: '/stock/services/ppc-services-hyderabad.jpg',
+    audience: ['Lead generation teams', 'E-commerce brands', 'Real estate projects', 'High-ticket services'],
+    platforms: ['Google Ads', 'Meta Ads', 'YouTube', 'Landing pages', 'Call tracking'],
+    deliverables: ['Account structure', 'Keyword plan', 'Ad copy bank', 'Landing page recommendations', 'Weekly spend review'],
+    metrics: ['CPL', 'CPA', 'ROAS', 'Conversion rate'],
+    assets: ['Campaign launch checklist', 'Ad creative board', 'Budget pacing sheet', 'Search term insight report'],
+  },
+  'lead-generation': {
+    heroImage: '/stock/services/lead-generation.jpg',
+    audience: ['B2B sellers', 'Clinics', 'Institutes', 'Consultants', 'Property teams'],
+    platforms: ['Google Ads', 'LinkedIn', 'Meta', 'WhatsApp', 'CRM'],
+    deliverables: ['Lead magnet', 'Qualification form', 'Landing page', 'Follow-up workflow', 'Sales handoff rules'],
+    metrics: ['Lead quality', 'Cost per qualified lead', 'Response time', 'Appointment rate'],
+    assets: ['ICP worksheet', 'Sales script', 'Lead scoring model', 'Follow-up message bank'],
+  },
+  'social-media-marketing': {
+    heroImage: '/stock/services/social-media-marketing.jpg',
+    audience: ['Consumer brands', 'Creators', 'Clinics', 'Education brands', 'D2C teams'],
+    platforms: ['Instagram', 'Facebook', 'LinkedIn', 'YouTube Shorts', 'TikTok-style reels'],
+    deliverables: ['Content pillars', 'Monthly calendar', 'Short-form scripts', 'Design system', 'Engagement playbook'],
+    metrics: ['Engaged reach', 'Profile actions', 'Inbound enquiries', 'Creative saves'],
+    assets: ['Reels hook library', 'Carousel templates', 'Story prompt set', 'Community response guide'],
+  },
+  'online-reputation-management': {
+    heroImage: '/stock/services/online-reputation-management.jpg',
+    audience: ['Healthcare providers', 'Founders', 'Institutions', 'Service brands', 'Local businesses'],
+    platforms: ['Google Reviews', 'Maps', 'Social listening', 'Search results', 'PR placements'],
+    deliverables: ['Sentiment audit', 'Review response guide', 'Trust asset plan', 'Search result cleanup', 'Reputation dashboard'],
+    metrics: ['Review rating', 'Sentiment ratio', 'Branded search quality', 'Trust asset coverage'],
+    assets: ['Review request sequence', 'Crisis response sheet', 'Proof library', 'Brand mention tracker'],
+  },
+  'marketing-automation': {
+    heroImage: '/stock/services/marketing-automation.jpg',
+    audience: ['Sales teams', 'Admissions teams', 'Healthcare desks', 'D2C retention teams', 'B2B pipelines'],
+    platforms: ['HubSpot', 'Salesforce', 'Zoho', 'Klaviyo', 'WhatsApp'],
+    deliverables: ['CRM cleanup', 'Lifecycle journeys', 'Lead scoring', 'Automation rules', 'Reporting dashboards'],
+    metrics: ['Follow-up speed', 'Lifecycle conversion', 'Repeat purchase', 'Pipeline visibility'],
+    assets: ['Automation blueprint', 'CRM field map', 'Nurture copy bank', 'Lifecycle dashboard'],
+  },
+  'google-ads-services': {
+    heroImage: '/stock/services/google-ads-services.jpg',
+    audience: ['Search-led businesses', 'Local services', 'E-commerce stores', 'High-intent categories'],
+    platforms: ['Google Search', 'Performance Max', 'Display', 'YouTube', 'Shopping'],
+    deliverables: ['Keyword architecture', 'Conversion tracking', 'Ad extensions', 'Search term review', 'Remarketing buildout'],
+    metrics: ['Conversion value', 'CPA', 'Impression share', 'Quality score'],
+    assets: ['Negative keyword bank', 'Landing page checklist', 'PMax asset plan', 'Search campaign map'],
+  },
+  'email-marketing': {
+    heroImage: '/stock/services/email-marketing.jpg',
+    audience: ['D2C brands', 'B2B teams', 'Education institutes', 'SaaS products', 'Service businesses'],
+    platforms: ['Klaviyo', 'Mailchimp', 'HubSpot', 'Zoho Campaigns', 'CRM email'],
+    deliverables: ['Segmentation plan', 'Newsletter system', 'Automation flows', 'Subject line testing', 'Performance reports'],
+    metrics: ['Open quality', 'Click rate', 'Revenue per recipient', 'Unsubscribe trend'],
+    assets: ['Email template kit', 'Lifecycle map', 'Subject line bank', 'Offer calendar'],
+  },
+};

@@ -1,95 +1,132 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { ArrowLeft, Instagram, Twitter, Linkedin, Quote } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, CheckCircle2, Linkedin, Quote, Sparkles, Target, Twitter, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function FounderAbout({ onBack }: { onBack: () => void }) {
-  return (
-    <div className="min-h-screen bg-[#0B1F3A]">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 py-6 bg-[#0B1F3A]/80 backdrop-blur-md border-b border-white/5">
-        <div className="container mx-auto px-6 flex justify-between items-center text-white">
-          <button onClick={onBack} className="flex items-center gap-2 text-sm font-black uppercase tracking-widest hover:text-accent transition-colors">
-            <ArrowLeft size={16} /> Hub
-          </button>
-          <div className="text-xl font-black italic tracking-tighter">vantage.media</div>
-          <div className="flex gap-6">
-            <Linkedin size={18} className="hover:text-accent cursor-pointer" />
-            <Twitter size={18} className="hover:text-accent cursor-pointer" />
-          </div>
-        </div>
-      </nav>
+const founderPrinciples = [
+  {
+    title: 'Clear positioning before campaigns',
+    desc: 'Every growth system starts with a sharper offer, a better audience definition, and a page that says why the buyer should care now.',
+    icon: <Target size={22} />,
+  },
+  {
+    title: 'Content with commercial intent',
+    desc: 'Creative work is mapped to lead quality, trust, retention, and sales conversations instead of vanity reach alone.',
+    icon: <Sparkles size={22} />,
+  },
+  {
+    title: 'Operator-led delivery',
+    desc: 'Strategy, media, design, and automation stay connected so the client sees one growth system, not scattered tasks.',
+    icon: <Users size={22} />,
+  },
+];
 
-      <main className="pt-32 pb-40">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+export function FounderAbout() {
+  return (
+    <div className="min-h-screen bg-white">
+      <main className="pt-28 pb-20 md:pb-28">
+        <section className="container mx-auto px-4 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative aspect-[4/5] group"
+              transition={{ duration: 0.7 }}
+              className="relative min-h-[420px] overflow-hidden rounded-lg border border-card-border bg-secondary sm:min-h-[560px]"
             >
-              <div className="absolute -inset-4 border border-white/10 rounded-[4rem] group-hover:border-accent/40 transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-transparent to-transparent z-10" />
-              <img 
-                src="/Founder.jpg" 
-                alt="Founder" 
-                className="w-full h-full object-cover rounded-[3.5rem] grayscale group-hover:grayscale-0 transition-all duration-700"
+              <img
+                src="/Founder.jpg"
+                alt="Haseeb, founder of Vantage Media"
+                className="absolute inset-0 h-full w-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "/stock/placeholder.svg";
+                }}
               />
-              <div className="absolute bottom-12 left-12 z-20">
-                <span className="text-accent text-xs font-black uppercase tracking-[0.5em] block mb-2">Content Creator</span>
-                <h1 className="text-5xl font-black text-white italic tracking-tighter uppercase">Haseeb</h1>
+              <div className="absolute inset-0 bg-gradient-to-t from-text-main/85 via-text-main/10 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <span className="mb-3 inline-flex rounded-lg bg-accent px-3 py-2 text-[10px] font-black uppercase tracking-widest text-white">
+                  Content Creator
+                </span>
+                <h1 className="text-4xl font-black uppercase tracking-tight text-white sm:text-6xl">
+                  Haseeb
+                </h1>
+                <div className="mt-5 flex gap-3 text-white/75">
+                  <Linkedin size={20} className="hover:text-accent transition-colors" />
+                  <Twitter size={20} className="hover:text-accent transition-colors" />
+                </div>
               </div>
             </motion.div>
 
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-12"
-              >
-                <Quote className="text-accent mb-6" size={48} />
-                <h2 className="text-4xl md:text-5xl font-black text-white leading-[1.1] tracking-tighter uppercase mb-8">
-                  WE DON'T BUILD COMPANIES. <br />
-                  <span className="text-accent italic">WE ENGINEER SCALE UNTIL IT BREAKS THE MARKET.</span>
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+                <Quote className="mb-6 text-accent" size={44} />
+                <span className="mb-5 inline-block rounded-lg bg-accent/10 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-accent">
+                  Founder Note
+                </span>
+                <h2 className="mb-7 text-4xl font-black leading-none tracking-tight text-text-main sm:text-5xl md:text-7xl">
+                  Growth works when content, media, and systems move together.
                 </h2>
+                <p className="max-w-2xl text-lg font-medium leading-relaxed text-text-muted md:text-xl">
+                  Vantage Media is built for clients who need clear demand, sharper trust, and campaigns that can be measured by pipeline. We bring strategy, content, paid acquisition, SEO, and automation into one operating rhythm.
+                </p>
               </motion.div>
 
-              <div className="space-y-10">
-                <p className="text-white/60 text-xl leading-relaxed font-medium">
-                  At Vantage Media, we've moved past the "traditional agency" model. My obsession has always been with the technical leverage that exists between a superior product and a high-performance acquisition engine. 
-                </p>
-                <p className="text-white/60 text-xl leading-relaxed font-medium transition-opacity hover:opacity-100">
-                  Based in Hyderabad's tech hub, we've spent a decade refining the protocol for zero-friction growth. Every founder has a limit—we exist to calculate that limit and then push it by $10M+.
-                </p>
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                {[
+                  { value: '12+', label: 'Industries served' },
+                  { value: '9', label: 'Core services' },
+                  { value: '27+', label: 'Sub-service plays' },
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-lg border border-card-border bg-secondary/40 p-5">
+                    <div className="mb-2 text-3xl font-black leading-none text-accent">{stat.value}</div>
+                    <div className="text-xs font-black uppercase tracking-widest text-text-muted">{stat.label}</div>
+                  </div>
+                ))}
               </div>
 
-              <div className="mt-16 grid grid-cols-2 gap-12">
-                 <div>
-                    <div className="text-accent font-black text-4xl mb-2 tracking-tighter leading-none">12+</div>
-                    <div className="text-white/40 text-xs font-bold uppercase tracking-widest">Scalable Verticals</div>
-                 </div>
-                 <div>
-                    <div className="text-accent font-black text-4xl mb-2 tracking-tighter leading-none">$140M+</div>
-                    <div className="text-white/40 text-xs font-bold uppercase tracking-widest">Client Rev Managed</div>
-                 </div>
+              <div className="mt-10 grid gap-4">
+                {founderPrinciples.map((item) => (
+                  <div key={item.title} className="flex gap-4 rounded-lg border border-card-border bg-white p-5 shadow-sm">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-black text-text-main">{item.title}</h3>
+                      <p className="font-medium leading-relaxed text-text-muted">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="mt-20">
-                <Button className="rounded-full bg-white text-[#0B1F3A] font-black uppercase tracking-widest px-10 py-8 hover:bg-accent hover:text-white transition-all">
-                  Request Private Briefing
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+                <Button asChild className="rounded-lg bg-text-main px-8 py-6 font-black text-white">
+                  <a href="#about">Request a Growth Audit <ArrowRight size={18} /></a>
+                </Button>
+                <Button asChild variant="outline" className="rounded-lg px-8 py-6 font-bold">
+                  <a href="https://calendly.com/vantage-media">Book a Strategy Call</a>
                 </Button>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </section>
 
-      <footer className="py-20 border-t border-white/5 opacity-40">
-        <div className="container mx-auto px-6 text-center">
-            <span className="text-white text-xs font-bold uppercase tracking-[0.5em]">Vantage Media © 2026 Systems Architecture</span>
-        </div>
-      </footer>
+        <section className="container mx-auto px-4 sm:px-6 pt-16 md:pt-24">
+          <div className="rounded-lg bg-text-main p-7 text-white sm:p-10 md:p-14">
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-accent">How we work</span>
+                <h2 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">A compact senior team with one job: measurable market momentum.</h2>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {['Message-market fit', 'Landing page clarity', 'Campaign velocity', 'Reporting discipline'].map((item) => (
+                  <div key={item} className="rounded-lg border border-white/10 bg-white/5 p-5">
+                    <CheckCircle2 className="mb-4 text-accent" size={20} />
+                    <div className="text-lg font-black">{item}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }

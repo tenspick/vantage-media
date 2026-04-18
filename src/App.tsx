@@ -39,7 +39,7 @@ import {
   ShoppingBag,
   Users
 } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { renderCanvas } from "@/components/ui/canvas";
 import { Button } from "@/components/ui/button";
 
@@ -380,7 +380,15 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [view]);
 
-  if (view === 'about') return <FounderAbout onBack={() => navigateTo('main')} />;
+  if (view === 'about') {
+    return (
+      <>
+        <CommonNavbar onNavigate={navigateTo} onIndustryNavigate={navigateIndustry} onServiceNavigate={navigateService} />
+        <FounderAbout />
+        <CommonFooter onIndustryNavigate={navigateIndustry} onServiceNavigate={navigateService} />
+      </>
+    );
+  }
   if (view === 'service') {
     const service = getServiceBySlug(serviceSlug) ?? services[0];
     return (
@@ -413,21 +421,21 @@ export default function App() {
       <WhatsAppButton />
 
       {/* 🚀 Hero Section - Revamped to Match Screenshot Layout */}
-      <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-white">
+      <section id="home" className="relative pt-24 pb-14 md:pt-40 md:pb-32 overflow-hidden bg-white">
         {/* Interactive Canvas Background */}
         <canvas
           className="pointer-events-none absolute inset-0 mx-auto z-0 opacity-20"
           id="canvas"
         ></canvas>
 
-        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
           {/* Top Pill Badge */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-12"
+            className="mb-8 md:mb-12 w-full"
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-card-border bg-white px-4 py-1.5 text-xs font-semibold text-text-muted premium-shadow">
+            <div className="mx-auto inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-lg border border-card-border bg-white px-3 py-2 text-xs font-semibold text-text-muted premium-shadow">
               <Shapes size={14} className="text-accent" />
               <span>Introducing Vantage 2.0.</span>
               <a href="#case-studies" className="ml-1 flex items-center gap-0.5 text-text-main hover:text-accent transition-colors font-bold">
@@ -441,16 +449,16 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-full max-w-6xl mb-12"
+            className="relative w-full max-w-6xl mb-9 md:mb-12"
           >
             {/* Corner Brackets */}
-            <div className="absolute -left-4 -top-4 w-10 h-10 border-l-[3px] border-t-[3px] border-text-main rounded-tl-sm pointer-events-none" />
-            <div className="absolute -right-4 -top-4 w-10 h-10 border-r-[3px] border-t-[3px] border-text-main rounded-tr-sm pointer-events-none" />
-            <div className="absolute -left-4 -bottom-4 w-10 h-10 border-l-[3px] border-b-[3px] border-text-main rounded-bl-sm pointer-events-none" />
-            <div className="absolute -right-4 -bottom-4 w-10 h-10 border-r-[3px] border-b-[3px] border-text-main rounded-br-sm pointer-events-none" />
+            <div className="hidden sm:block absolute -left-4 -top-4 w-10 h-10 border-l-[3px] border-t-[3px] border-text-main rounded-tl-sm pointer-events-none" />
+            <div className="hidden sm:block absolute -right-4 -top-4 w-10 h-10 border-r-[3px] border-t-[3px] border-text-main rounded-tr-sm pointer-events-none" />
+            <div className="hidden sm:block absolute -left-4 -bottom-4 w-10 h-10 border-l-[3px] border-b-[3px] border-text-main rounded-bl-sm pointer-events-none" />
+            <div className="hidden sm:block absolute -right-4 -bottom-4 w-10 h-10 border-r-[3px] border-b-[3px] border-text-main rounded-br-sm pointer-events-none" />
 
-            <div className="py-12 md:py-32 px-4 md:px-12 bg-white/50 backdrop-blur-sm [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
-              <h1 className="text-4xl sm:text-6xl md:text-[112px] font-black leading-[0.95] md:leading-[0.9] tracking-tighter text-text-main mb-8 max-w-5xl mx-auto">
+            <div className="py-8 sm:py-12 md:py-32 px-2 sm:px-4 md:px-12 bg-white/50 backdrop-blur-sm md:[mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
+              <h1 className="text-4xl sm:text-6xl md:text-[112px] font-black leading-[1] md:leading-[0.9] tracking-tight md:tracking-tighter text-text-main mb-6 md:mb-8 max-w-5xl mx-auto">
                 Your complete platform for Growth.
               </h1>
               
@@ -469,7 +477,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="max-w-3xl px-4"
+            className="max-w-3xl px-0 sm:px-4"
           >
             <h2 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 text-text-main">
               Welcome to our Growth Lab! We are <span className="text-accent underline decoration-accent/20 underline-offset-8 italic">Vantage Media.</span>
@@ -479,12 +487,12 @@ export default function App() {
               high-performance growth engines to empower founders.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild variant="default" className="w-full sm:w-auto px-10 py-7 text-base md:text-lg rounded-xl font-black bg-text-main text-white hover:bg-black shadow-xl shadow-text-main/10 transition-all duration-300">
+            <div className="flex w-full flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <Button asChild variant="default" className="w-full sm:w-auto px-8 sm:px-10 py-6 md:py-7 text-base md:text-lg rounded-lg font-black bg-text-main text-white hover:bg-black shadow-xl shadow-text-main/10 transition-all duration-300">
                 <a href="#about">Start Project</a>
               </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto px-10 py-7 text-base md:text-lg rounded-xl font-bold border-card-border hover:bg-secondary transition-all duration-300">
-                <a href="https://calendly.com/vantage-media">Book a call</a>
+              <Button asChild variant="outline" className="w-full sm:w-auto px-8 sm:px-10 py-6 md:py-7 text-base md:text-lg rounded-lg font-bold border-card-border hover:bg-secondary transition-all duration-300">
+                <a href="https://calendly.com/vantage-media">Book a Strategy Call</a>
               </Button>
             </div>
           </motion.div>
@@ -494,12 +502,19 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="mt-20 flex items-center justify-center gap-6"
+            className="mt-12 md:mt-20 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
              <div className="flex -space-x-3">
-                {[1,2,3,4].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-4 border-white overflow-hidden bg-secondary shadow-sm">
-                    <img src={`https://picsum.photos/seed/expert${i}/100/100`} alt="Team Member" referrerPolicy="no-referrer" />
+                {[
+                  { initials: 'VM', bg: 'bg-text-main' },
+                  { initials: 'AD', bg: 'bg-accent' },
+                  { initials: 'UX', bg: 'bg-emerald-600' },
+                  { initials: 'OPS', bg: 'bg-slate-700' },
+                ].map((item) => (
+                  <div key={item.initials} className="w-10 h-10 rounded-full border-4 border-white overflow-hidden shadow-sm flex items-center justify-center">
+                    <div className={`w-full h-full ${item.bg} text-white flex items-center justify-center text-[10px] font-black tracking-widest`}>
+                      {item.initials}
+                    </div>
                   </div>
                 ))}
              </div>
@@ -512,9 +527,9 @@ export default function App() {
       </section>
 
       {/* 💣 Social Proof - Logos */}
-      <section className="py-20 md:py-32 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center gap-4 text-center mb-16 md:mb-20">
+      <section className="py-16 md:py-32 bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex flex-col items-center gap-4 text-center mb-10 md:mb-20">
             <span className="text-accent font-black uppercase tracking-[0.3em] text-[10px]">Proof of Work</span>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-text-main tracking-tight">Brands Engineering Growth With <span className="text-accent">Vantage</span></h2>
           </div>
@@ -527,7 +542,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="w-full h-28 md:h-32 bg-white rounded-lg flex items-center justify-center p-2 md:p-3 shadow-sm border border-card-border/40 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+                className="w-full h-24 sm:h-28 md:h-32 bg-white rounded-lg flex items-center justify-center p-2 md:p-3 shadow-sm border border-card-border/40 hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
               >
                 <img 
                   src={`/logos/logo-${i + 2}.jpeg`} 
@@ -542,14 +557,14 @@ export default function App() {
       </section>
 
       {/* Industry Pages */}
-      <section id="industries" className="py-20 md:py-32 bg-white">
+      <section id="industries" className="py-16 md:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-start">
             <div className="lg:sticky lg:top-28">
               <span className="inline-block px-4 py-2 rounded-lg bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">
                 Industries We Serve
               </span>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black leading-none tracking-tight mb-7">
+              <h2 className="text-3xl sm:text-5xl md:text-7xl font-black leading-none tracking-tight mb-6 md:mb-7">
                 Custom growth pages for every vertical.
               </h2>
               <p className="text-text-muted text-lg md:text-xl leading-relaxed font-medium mb-8">
@@ -594,16 +609,16 @@ export default function App() {
       {/* 🛠 Expanded Services Section */}
       <TechFloatingHero />
       
-      <section id="services" className="py-24 md:py-48 relative overflow-hidden bg-secondary/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mb-32">
+      <section id="services" className="py-16 md:py-48 relative overflow-hidden bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mb-12 md:mb-32">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">Our Protocol</span>
-              <h2 className="text-5xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">
+              <span className="inline-block px-4 py-1.5 rounded-lg bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">Our Protocol</span>
+              <h2 className="text-4xl sm:text-5xl md:text-8xl font-black mb-6 md:mb-10 leading-[0.95] md:leading-[0.9] tracking-tight md:tracking-tighter">
                 END-TO-END <br />
                 DIGITAL <span className="italic text-accent">LEVERAGE.</span>
               </h2>
@@ -622,7 +637,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 viewport={{ once: true }}
-                className="group text-left p-8 md:p-10 bg-white border border-card-border rounded-lg hover:border-accent/40 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
+                className="group text-left p-6 md:p-10 bg-white border border-card-border rounded-lg hover:border-accent/40 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
               >
                 <div className={`w-14 h-14 rounded-lg ${service.accent} text-white flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
                   {React.cloneElement(service.icon as React.ReactElement, { size: 28 })}
@@ -652,12 +667,12 @@ export default function App() {
       <HeroSection03 />
 
       {/* 🔄 Process Section */}
-      <section id="process" className="py-24 md:py-40">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto glass-card rounded-lg p-8 sm:p-12 md:p-20 relative overflow-hidden bg-white premium-shadow">
+      <section id="process" className="py-16 md:py-40">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto glass-card rounded-lg p-6 sm:p-12 md:p-20 relative overflow-hidden bg-white premium-shadow">
             <div className="relative z-10">
               <span className="block text-center text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-5">Operating Framework</span>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-12 md:mb-16 text-center">GROWTH <span className="text-accent underline underline-offset-[12px] decoration-accent/20">OPERATING SYSTEM</span></h2>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-10 md:mb-16 text-center">GROWTH <span className="text-accent underline underline-offset-[12px] decoration-accent/20">OPERATING SYSTEM</span></h2>
               
               <div className="space-y-12 md:space-y-20 relative">
                 {/* Vertical Line */}
@@ -669,7 +684,7 @@ export default function App() {
                   { step: "03", title: "Channel Execution & Creative Testing", desc: "We launch paid media, SEO, content, automation, and creative experiments with weekly optimization cycles and clear ownership." },
                   { step: "04", title: "Measurement & Scale Optimization", desc: "We connect analytics, CRM signals, attribution, and reporting so CAC, ROAS, lead quality, and pipeline velocity guide scale decisions." }
                 ].map((item, i) => (
-                  <div key={i} className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+                  <div key={i} className="flex flex-col md:flex-row gap-5 md:gap-16 items-start">
                     <div className="w-12 h-12 rounded-lg bg-text-main flex items-center justify-center shrink-0 z-10 shadow-lg shadow-text-main/20">
                       <span className="text-white font-mono font-bold text-lg">{item.step}</span>
                     </div>
@@ -682,24 +697,24 @@ export default function App() {
               </div>
 
                <div className="mt-20 text-center">
-                  <button className="btn-primary rounded-lg px-12 py-6 text-xl">
+                  <button className="btn-primary rounded-lg w-full sm:w-auto px-8 sm:px-12 py-5 sm:py-6 text-base sm:text-xl">
                     Deploy the Framework <ArrowRight size={24} />
                   </button>
                </div>
             </div>
 
-            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute inset-0 pointer-events-none border border-card-border/40 rounded-lg" />
           </div>
         </div>
       </section>
 
       {/* 🎯 Lead Capture Section */}
-      <section id="about" className="py-24 md:py-40 relative">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <section id="about" className="py-16 md:py-40 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <span className="text-accent text-sm font-bold uppercase tracking-widest mb-4 block text-center lg:text-left">Let's Build</span>
-              <h2 className="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-[0.95] text-center lg:text-left">READY TO <br /><span className="text-gradient">ACCELERATE</span>?</h2>
+              <h2 className="text-4xl sm:text-5xl md:text-8xl font-black mb-6 md:mb-8 leading-[0.95] text-center lg:text-left">READY TO <br /><span className="text-accent italic">ACCELERATE</span>?</h2>
               <p className="text-text-muted text-lg md:text-xl mb-12 max-w-lg leading-relaxed text-center lg:text-left mx-auto lg:mx-0">
                 We only take on 2 new partners per month to ensure absolute focus. Fill out the form to start your growth audit.
               </p>
@@ -723,7 +738,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="glass-card bg-white p-10 md:p-14 premium-shadow border-t-8 border-t-accent">
+            <div className="glass-card rounded-lg bg-white p-5 sm:p-8 md:p-14 premium-shadow border-t-8 border-t-accent">
                <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>

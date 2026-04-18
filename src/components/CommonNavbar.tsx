@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Menu, PhoneCall, X } from 'lucide-react';
 import { industries } from './IndustrySlug';
 import { services } from '@/data/services';
@@ -17,6 +17,12 @@ export function CommonNavbar({
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<null | 'services' | 'industries'>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const servicesButtonRef = useRef<HTMLButtonElement | null>(null);
+  const industriesButtonRef = useRef<HTMLButtonElement | null>(null);
+  const servicesPanelRef = useRef<HTMLDivElement | null>(null);
+  const industriesPanelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -26,6 +32,81 @@ export function CommonNavbar({
   }, []);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
+  const closeDropdowns = () => setOpenDropdown(null);
+
+  const calendlyHref = "https://calendly.com/vantage-media";
+
+  const focusableSelector = useMemo(
+    () => 'a[href],button:not([disabled]),textarea,input,select,[tabindex]:not([tabindex="-1"])',
+    []
+  );
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+        closeDropdowns();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    const onPointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (!target) return;
+
+      const clickedInServices =
+        servicesButtonRef.current?.contains(target) || servicesPanelRef.current?.contains(target);
+      const clickedInIndustries =
+        industriesButtonRef.current?.contains(target) || industriesPanelRef.current?.contains(target);
+      if (clickedInServices || clickedInIndustries) return;
+
+      closeDropdowns();
+    };
+    window.addEventListener('mousedown', onPointerDown);
+    window.addEventListener('touchstart', onPointerDown);
+    return () => {
+      window.removeEventListener('mousedown', onPointerDown);
+      window.removeEventListener('touchstart', onPointerDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
+    const first = (mobileMenuRef.current?.querySelector(focusableSelector) as HTMLElement | null) ?? null;
+    first?.focus();
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [focusableSelector, isMobileMenuOpen]);
+
+  const onMobileMenuKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab') return;
+    const focusables = Array.from(mobileMenuRef.current?.querySelectorAll(focusableSelector) ?? []) as HTMLElement[];
+    if (focusables.length === 0) return;
+
+    const active = document.activeElement as HTMLElement | null;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+      return;
+    }
+    if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-4 md:py-6'}`}>
@@ -41,49 +122,89 @@ export function CommonNavbar({
           </button>
 
           <div className="hidden md:flex items-center gap-8">
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-semibold text-text-muted hover:text-accent transition-colors py-3">
+            <div className="relative">
+              <button
+                ref={servicesButtonRef}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={openDropdown === 'services'}
+                className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-semibold text-text-muted hover:text-accent transition-colors py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/20"
+                onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
+              >
                 Services <ChevronDown size={14} />
               </button>
-              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 absolute left-0 top-full w-[520px] rounded-lg border border-card-border bg-white p-4 shadow-2xl transition-all">
-                <div className="grid grid-cols-2 gap-2">
-                  {services.map((service) => (
-                    <button
-                      key={service.slug}
-                      onClick={() => onServiceNavigate(service.slug)}
-                      className="rounded-lg p-3 text-left hover:bg-secondary transition-colors"
-                    >
-                      <div className="text-sm font-black text-text-main">{service.title}</div>
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {service.subServices.slice(0, 2).map((sub) => (
-                          <span key={sub.slug} className="rounded bg-accent/10 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-accent">
-                            {sub.title}
-                          </span>
-                        ))}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <AnimatePresence>
+                {openDropdown === 'services' && (
+                  <motion.div
+                    ref={servicesPanelRef}
+                    role="menu"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 top-full w-[560px] rounded-lg border border-card-border bg-white p-4 shadow-2xl"
+                  >
+                    <div className="grid grid-cols-2 gap-2">
+                      {services.map((service) => (
+                        <button
+                          key={service.slug}
+                          role="menuitem"
+                          onClick={() => { onServiceNavigate(service.slug); closeDropdowns(); }}
+                          className="rounded-lg p-3 text-left hover:bg-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-accent/20"
+                        >
+                          <div className="text-sm font-black text-text-main">{service.title}</div>
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {service.subServices.slice(0, 2).map((sub) => (
+                              <span key={sub.slug} className="rounded bg-accent/10 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-accent">
+                                {sub.title}
+                              </span>
+                            ))}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-semibold text-text-muted hover:text-accent transition-colors py-3">
+            <div className="relative">
+              <button
+                ref={industriesButtonRef}
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={openDropdown === 'industries'}
+                className="flex items-center gap-1 text-[10px] uppercase tracking-widest font-semibold text-text-muted hover:text-accent transition-colors py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/20"
+                onClick={() => setOpenDropdown(openDropdown === 'industries' ? null : 'industries')}
+              >
                 Industries <ChevronDown size={14} />
               </button>
-              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 absolute left-0 top-full w-[460px] rounded-lg border border-card-border bg-white p-4 shadow-2xl transition-all">
-                <div className="grid grid-cols-2 gap-2">
-                  {industries.map((industry) => (
-                    <button
-                      key={industry.slug}
-                      onClick={() => onIndustryNavigate(industry.slug)}
-                      className="rounded-lg px-3 py-3 text-left text-sm font-bold text-text-main hover:bg-secondary hover:text-accent transition-colors"
-                    >
-                      {industry.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <AnimatePresence>
+                {openDropdown === 'industries' && (
+                  <motion.div
+                    ref={industriesPanelRef}
+                    role="menu"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 top-full w-[480px] rounded-lg border border-card-border bg-white p-4 shadow-2xl"
+                  >
+                    <div className="grid grid-cols-2 gap-2">
+                      {industries.map((industry) => (
+                        <button
+                          key={industry.slug}
+                          role="menuitem"
+                          onClick={() => { onIndustryNavigate(industry.slug); closeDropdowns(); }}
+                          className="rounded-lg px-3 py-3 text-left text-sm font-bold text-text-main hover:bg-secondary hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent/20"
+                        >
+                          {industry.name}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <button onClick={() => onNavigate('about')} className="text-[10px] uppercase tracking-widest font-semibold text-text-muted hover:text-accent transition-colors">
@@ -94,14 +215,14 @@ export function CommonNavbar({
                 {item}
               </a>
             ))}
-            <a href="https://calendly.com/vantage-media" className="btn-primary rounded-lg py-2.5 px-6 text-sm">
+            <a href={calendlyHref} className="btn-primary rounded-lg py-2.5 px-6 text-sm">
               Book a Strategy Call <PhoneCall size={16} />
             </a>
           </div>
 
           <button
             className="md:hidden text-text-main h-10 w-10 rounded-lg border border-card-border bg-white/80 flex items-center justify-center shrink-0"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => { closeDropdowns(); setIsMobileMenuOpen(!isMobileMenuOpen); }}
             aria-expanded={isMobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -113,10 +234,12 @@ export function CommonNavbar({
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            ref={mobileMenuRef}
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             className="fixed top-[72px] left-4 right-4 max-h-[calc(100vh-88px)] overflow-y-auto bg-white border border-card-border p-5 md:hidden glass-card rounded-lg premium-shadow"
+            onKeyDown={onMobileMenuKeyDown}
           >
             <div className="flex flex-col gap-4">
               <button className="text-base font-bold text-text-main text-left rounded-lg px-3 py-3 hover:bg-secondary" onClick={() => { onNavigate('about'); closeMenu(); }}>
@@ -166,7 +289,7 @@ export function CommonNavbar({
                   ))}
                 </div>
               </div>
-              <a href="https://calendly.com/vantage-media" className="btn-primary w-full justify-center py-4 rounded-lg" onClick={closeMenu}>
+              <a href={calendlyHref} className="btn-primary w-full justify-center py-4 rounded-lg" onClick={closeMenu}>
                 Book a Strategy Call
               </a>
             </div>

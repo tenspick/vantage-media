@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   BarChart3,
@@ -45,7 +45,7 @@ export const industries: Industry[] = [
     headline: 'Patient acquisition built around trust.',
     summary: 'Campaigns for hospitals, clinics, diagnostics, and wellness brands that turn high-intent searches into booked consultations.',
     icon: <HeartPulse />,
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/healthcare.jpg',
     services: [
       { title: 'Patient Acquisition', desc: 'Search, local, and paid funnels for high-value treatment lines.', subs: ['Doctor profile SEO', 'Appointment landing pages', 'Call tracking'] },
       { title: 'Reputation Growth', desc: 'Build confidence across reviews, maps, social proof, and patient education.', subs: ['Review workflows', 'Patient stories', 'ORM response playbooks'] },
@@ -60,7 +60,7 @@ export const industries: Industry[] = [
     headline: 'Enrollment pipelines for modern institutions.',
     summary: 'Lead generation and nurturing for schools, colleges, edtech, coaching centers, and professional training institutes.',
     icon: <GraduationCap />,
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/education.jpg',
     services: [
       { title: 'Admissions Campaigns', desc: 'Always-on campaigns for programs, campuses, and seasonal admission cycles.', subs: ['Google Ads', 'Meta lead ads', 'Program landing pages'] },
       { title: 'Lead Nurturing', desc: 'Move prospects from enquiry to counselling to enrollment.', subs: ['Counsellor CRM', 'Email sequences', 'WhatsApp automation'] },
@@ -75,7 +75,7 @@ export const industries: Industry[] = [
     headline: 'Pipeline for technology and service firms.',
     summary: 'Demand generation for SaaS, IT services, outsourcing, consulting, cybersecurity, and managed service providers.',
     icon: <MonitorCog />,
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/it-ites.jpg',
     services: [
       { title: 'B2B Lead Generation', desc: 'Position offers for buyers with clear problems and urgent timelines.', subs: ['LinkedIn campaigns', 'ABM lists', 'Lead magnets'] },
       { title: 'Technical SEO', desc: 'Own service, solution, and comparison searches in competitive markets.', subs: ['Solution pages', 'Schema cleanup', 'Content clusters'] },
@@ -90,7 +90,7 @@ export const industries: Industry[] = [
     headline: 'Visibility that converts attention into action.',
     summary: 'Digital campaigns for nonprofits, foundations, CSR initiatives, and community programs that need donors, volunteers, and credibility.',
     icon: <HandHeart />,
-    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/ngos.jpg',
     services: [
       { title: 'Donor Campaigns', desc: 'Turn cause awareness into recurring donor and sponsor pipelines.', subs: ['Donation pages', 'Impact funnels', 'Retargeting'] },
       { title: 'Impact Storytelling', desc: 'Build emotional clarity through proof-led content and field stories.', subs: ['Campaign films', 'Report design', 'Social content'] },
@@ -105,7 +105,7 @@ export const industries: Industry[] = [
     headline: 'High-intent enquiries for projects and brokers.',
     summary: 'Full-funnel marketing for residential, commercial, plotted, luxury, and leasing projects.',
     icon: <Building2 />,
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/real-estate.jpg',
     services: [
       { title: 'Project Launch Funnels', desc: 'Create enquiry velocity for launches, site visits, and inventory movement.', subs: ['Launch ads', 'Brochure pages', 'Site visit booking'] },
       { title: 'Local Search Capture', desc: 'Win searches by location, property type, budget, and intent.', subs: ['Map SEO', 'Project SEO', 'Competitor terms'] },
@@ -120,7 +120,7 @@ export const industries: Industry[] = [
     headline: 'Growth for regulated financial products.',
     summary: 'Performance marketing for lending, wealth, payments, insurance, accounting, and finance platforms.',
     icon: <Landmark />,
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/fintech.jpg',
     services: [
       { title: 'Compliance-Aware Campaigns', desc: 'Acquire customers while keeping claims, disclosures, and intent aligned.', subs: ['Ad review', 'Landing compliance', 'Risk messaging'] },
       { title: 'Lifecycle Automation', desc: 'Nurture applications, KYC, onboarding, activation, and retention.', subs: ['Application nudges', 'KYC journeys', 'Reactivation'] },
@@ -135,7 +135,7 @@ export const industries: Industry[] = [
     headline: 'B2B enquiries for factories and exporters.',
     summary: 'Marketing for manufacturers, OEMs, industrial suppliers, machinery companies, and exporters.',
     icon: <Factory />,
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/manufacturers.jpg',
     services: [
       { title: 'Industrial SEO', desc: 'Rank for product categories, materials, capabilities, and buyer specifications.', subs: ['Category pages', 'Technical content', 'Export SEO'] },
       { title: 'Lead Generation', desc: 'Generate RFQs from procurement teams, distributors, and enterprise buyers.', subs: ['Google Ads', 'LinkedIn outreach', 'RFQ landing pages'] },
@@ -150,7 +150,7 @@ export const industries: Industry[] = [
     headline: 'Hype, ticketing, and fan engagement.',
     summary: 'Campaigns for events, artists, venues, OTT, creators, music, film, and live experiences.',
     icon: <Film />,
-    image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/entertainment.jpg',
     services: [
       { title: 'Launch Campaigns', desc: 'Build anticipation before release, show, drop, or event day.', subs: ['Teaser funnels', 'Influencer seeding', 'Countdown ads'] },
       { title: 'Ticketing Growth', desc: 'Convert interest into booked seats, registrations, and paid access.', subs: ['Retargeting', 'Geo campaigns', 'Offer testing'] },
@@ -165,7 +165,7 @@ export const industries: Industry[] = [
     headline: 'Desire-led growth for style and beauty brands.',
     summary: 'Content, paid media, and commerce funnels for fashion labels, salons, cosmetics, skincare, and personal care brands.',
     icon: <Sparkles />,
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/fashion-beauty.jpg',
     services: [
       { title: 'Social Commerce', desc: 'Create product demand through creator-style content and paid amplification.', subs: ['Reels strategy', 'Creator ads', 'UGC testing'] },
       { title: 'E-commerce Growth', desc: 'Improve discovery, conversion, repeat purchase, and AOV.', subs: ['Shopify CRO', 'Product pages', 'Retention flows'] },
@@ -180,7 +180,7 @@ export const industries: Industry[] = [
     headline: 'Solar enquiries with measurable project intent.',
     summary: 'Growth systems for rooftop solar, EPC companies, installers, component brands, and energy consultants.',
     icon: <Sun />,
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/solar.jpg',
     services: [
       { title: 'Residential Solar Leads', desc: 'Capture homeowners looking for savings, subsidies, and installation quotes.', subs: ['Savings calculator', 'Google Ads', 'Local SEO'] },
       { title: 'Commercial Solar Demand', desc: 'Reach factories, offices, institutions, and commercial property owners.', subs: ['LinkedIn targeting', 'Case studies', 'ROI pages'] },
@@ -195,7 +195,7 @@ export const industries: Industry[] = [
     headline: 'Traffic, conversion, and retention in one loop.',
     summary: 'Performance systems for D2C, marketplaces, Shopify stores, Amazon sellers, and subscription commerce brands.',
     icon: <ShoppingBag />,
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/e-commerce.jpg',
     services: [
       { title: 'Paid Acquisition', desc: 'Scale profitable campaigns across Meta, Google, shopping, and retargeting.', subs: ['Creative testing', 'Catalog ads', 'ROAS tracking'] },
       { title: 'Store Conversion', desc: 'Improve PDPs, checkout, bundles, and purchase confidence.', subs: ['CRO audits', 'AOV bundles', 'Checkout fixes'] },
@@ -210,7 +210,7 @@ export const industries: Industry[] = [
     headline: 'Employer visibility and candidate pipelines.',
     summary: 'Marketing for HR consultancies, recruitment agencies, staffing firms, HR tech, payroll, and training brands.',
     icon: <Users />,
-    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1600&auto=format&fit=crop',
+    image: '/stock/industries/human-resources.jpg',
     services: [
       { title: 'Candidate Acquisition', desc: 'Build role-specific pipelines with faster qualification and follow-up.', subs: ['Job funnels', 'LinkedIn campaigns', 'Screening forms'] },
       { title: 'Employer Branding', desc: 'Show candidates and clients why your workplace or HR solution matters.', subs: ['Culture content', 'Social proof', 'Career pages'] },
@@ -223,30 +223,115 @@ export const industries: Industry[] = [
 export const getIndustryBySlug = (slug: string) =>
   industries.find((industry) => industry.slug === slug);
 
+const industryExpansion: Record<string, { buyers: string[]; channels: string[]; assets: string[]; conversionPlays: string[] }> = {
+  healthcare: {
+    buyers: ['Patients', 'Caregivers', 'Doctors', 'Hospital administrators'],
+    channels: ['Google Search', 'Maps', 'Meta', 'YouTube', 'WhatsApp'],
+    assets: ['Treatment pages', 'Doctor profile pages', 'Review workflows', 'Explainer videos'],
+    conversionPlays: ['Book consultation', 'Call now', 'Insurance enquiry', 'Diagnostic package lead'],
+  },
+  education: {
+    buyers: ['Parents', 'Students', 'Working professionals', 'Admissions teams'],
+    channels: ['Google', 'Meta', 'YouTube', 'Email', 'WhatsApp'],
+    assets: ['Program pages', 'Counsellor scripts', 'Scholarship campaigns', 'Outcome stories'],
+    conversionPlays: ['Apply now', 'Book counselling', 'Download brochure', 'Campus visit'],
+  },
+  'it-ites': {
+    buyers: ['CTOs', 'Procurement teams', 'Operations leaders', 'Founders'],
+    channels: ['LinkedIn', 'Google Search', 'Email', 'Webinars', 'ABM'],
+    assets: ['Solution pages', 'Case studies', 'Comparison pages', 'Demo decks'],
+    conversionPlays: ['Book demo', 'Request proposal', 'Download case study', 'Technical consultation'],
+  },
+  ngos: {
+    buyers: ['Donors', 'CSR teams', 'Volunteers', 'Grant committees'],
+    channels: ['Meta', 'Google Grants', 'Email', 'YouTube', 'PR'],
+    assets: ['Impact reports', 'Donation pages', 'Field stories', 'Volunteer drives'],
+    conversionPlays: ['Donate', 'Volunteer', 'Sponsor a program', 'Partner with us'],
+  },
+  'real-estate': {
+    buyers: ['Home buyers', 'Investors', 'Tenants', 'Channel partners'],
+    channels: ['Google Search', 'Meta', 'Maps', 'YouTube', 'WhatsApp'],
+    assets: ['Project landing pages', 'Walkthrough videos', 'Brochures', 'Site visit flows'],
+    conversionPlays: ['Book site visit', 'Download brochure', 'Call sales', 'Check availability'],
+  },
+  fintech: {
+    buyers: ['Borrowers', 'Investors', 'SMBs', 'Finance teams'],
+    channels: ['Google', 'Meta', 'LinkedIn', 'Email', 'Affiliate'],
+    assets: ['Calculator pages', 'Trust pages', 'Compliance copy', 'Lifecycle nudges'],
+    conversionPlays: ['Start application', 'Complete KYC', 'Talk to advisor', 'Activate account'],
+  },
+  manufacturers: {
+    buyers: ['Procurement heads', 'Distributors', 'Export buyers', 'Plant managers'],
+    channels: ['Google Search', 'LinkedIn', 'Trade directories', 'Email', 'SEO'],
+    assets: ['Product catalogs', 'Spec sheets', 'RFQ pages', 'Capability decks'],
+    conversionPlays: ['Request quote', 'Download catalog', 'Book factory call', 'Distributor enquiry'],
+  },
+  entertainment: {
+    buyers: ['Fans', 'Event attendees', 'Sponsors', 'Venue partners'],
+    channels: ['Instagram', 'YouTube', 'Meta', 'Influencers', 'Email'],
+    assets: ['Teasers', 'Countdown creatives', 'Ticketing pages', 'Fan content prompts'],
+    conversionPlays: ['Buy tickets', 'Register interest', 'Follow artist', 'Join fan list'],
+  },
+  'fashion-beauty': {
+    buyers: ['Shoppers', 'Salon clients', 'Creators', 'Retail partners'],
+    channels: ['Instagram', 'Meta', 'Google Shopping', 'Influencers', 'Email'],
+    assets: ['UGC ads', 'Product pages', 'Before-after content', 'Offer calendars'],
+    conversionPlays: ['Buy now', 'Book appointment', 'Claim offer', 'Join VIP list'],
+  },
+  solar: {
+    buyers: ['Homeowners', 'Factory owners', 'Institutions', 'Facility managers'],
+    channels: ['Google Search', 'LinkedIn', 'Maps', 'Meta', 'WhatsApp'],
+    assets: ['Savings calculators', 'ROI pages', 'Installation guides', 'Case studies'],
+    conversionPlays: ['Request quote', 'Calculate savings', 'Book site survey', 'Talk to engineer'],
+  },
+  'e-commerce': {
+    buyers: ['First-time shoppers', 'Repeat customers', 'Marketplace buyers', 'VIP segments'],
+    channels: ['Meta', 'Google Shopping', 'Email', 'SMS', 'Marketplace ads'],
+    assets: ['Product pages', 'Bundles', 'Email flows', 'Creative testing boards'],
+    conversionPlays: ['Add to cart', 'Recover checkout', 'Subscribe', 'Buy bundle'],
+  },
+  'human-resources': {
+    buyers: ['Candidates', 'HR heads', 'Founders', 'Hiring managers'],
+    channels: ['LinkedIn', 'Google Search', 'Meta', 'Email', 'Job platforms'],
+    assets: ['Career pages', 'Screening forms', 'Employer brand content', 'Sales decks'],
+    conversionPlays: ['Apply now', 'Book HR consult', 'Request staffing support', 'Join talent pool'],
+  },
+};
+
 export function IndustrySlug({ industry, onBack }: { industry: Industry; onBack: () => void }) {
+  const expansion = industryExpansion[industry.slug];
+
   return (
     <div className="min-h-screen bg-white">
-      <main className="pt-28 pb-20">
+      <main className="pt-24 pb-16 md:pt-28 md:pb-20">
         <section className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-16 items-center">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest mb-6">
                 {React.cloneElement(industry.icon as React.ReactElement, { size: 16 })}
                 {industry.eyebrow}
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-main leading-none tracking-tight mb-7">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-text-main leading-none tracking-tight mb-6">
                 {industry.headline}
               </h1>
               <p className="text-lg sm:text-xl text-text-muted leading-relaxed font-medium max-w-2xl mb-9">
                 {industry.summary}
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 mb-8">
                 <Button asChild className="rounded-lg bg-text-main text-white px-7 py-6 font-black">
                   <a href="#industry-services">Explore Services <ArrowRight size={18} /></a>
                 </Button>
                 <Button asChild variant="outline" className="rounded-lg px-7 py-6 font-bold">
-                  <a href="https://calendly.com/vantage-media">Book a Call</a>
+                  <a href="https://calendly.com/vantage-media">Book a Strategy Call</a>
                 </Button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {expansion.buyers.map((buyer) => (
+                  <div key={buyer} className="rounded-lg border border-card-border bg-secondary/50 p-3">
+                    <div className="text-[9px] font-black uppercase tracking-widest text-text-muted">Buyer</div>
+                    <div className="mt-1 text-sm font-black text-text-main">{buyer}</div>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
@@ -256,13 +341,45 @@ export function IndustrySlug({ industry, onBack }: { industry: Industry; onBack:
               transition={{ delay: 0.15 }}
               className="relative min-h-[320px] sm:min-h-[430px] overflow-hidden rounded-lg border border-card-border"
             >
-              <img src={industry.image} alt={`${industry.name} marketing strategy`} className="absolute inset-0 h-full w-full object-cover" />
+              <img
+                src={industry.image}
+                alt={`${industry.name} marketing strategy`}
+                className="absolute inset-0 h-full w-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "/stock/placeholder.svg";
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-text-main/70 via-text-main/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="text-white/70 text-[10px] uppercase tracking-widest font-black mb-2">Industry Slug</div>
                 <div className="text-white text-3xl sm:text-4xl font-black tracking-tight">/{industry.slug}</div>
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 sm:px-6 pt-14 md:pt-20">
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { title: 'Primary Channels', items: expansion.channels, icon: <BarChart3 size={22} /> },
+              { title: 'Growth Assets', items: expansion.assets, icon: <Sparkles size={22} /> },
+              { title: 'Conversion Plays', items: expansion.conversionPlays, icon: <Megaphone size={22} /> },
+            ].map((group) => (
+              <div key={group.title} className="rounded-lg border border-card-border bg-secondary/30 p-6">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-accent/10 text-accent">
+                  {group.icon}
+                </div>
+                <h2 className="text-xl font-black text-text-main mb-4">{group.title}</h2>
+                <div className="space-y-3">
+                  {group.items.map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-accent" />
+                      <span className="font-bold text-text-main">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

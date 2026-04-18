@@ -92,7 +92,7 @@ const Icon = ({
     >
       {/* Inner wrapper for the continuous floating animation */}
       <motion.div
-        className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 p-4 rounded-2xl shadow-2xl bg-white/90 backdrop-blur-md border border-accent/10"
+        className="flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 md:w-20 md:h-20 p-2.5 sm:p-4 rounded-lg shadow-xl md:shadow-2xl bg-white/90 backdrop-blur-md border border-accent/10"
         animate={{
           y: [0, -10, 0, 10, 0],
           x: [0, 8, 0, -8, 0],
@@ -154,14 +154,14 @@ const FloatingIconsHero = React.forwardRef<
 
       {/* Container for the foreground content */}
       <div className="relative z-10 text-center px-4">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tight text-[#0B1F3A]">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-[#0B1F3A] leading-none">
           {title}
         </h1>
-        <p className="mt-6 max-w-xl mx-auto text-lg text-[#0B1F3A]/60 font-medium">
+        <p className="mt-5 md:mt-6 max-w-xl mx-auto text-base sm:text-lg text-[#0B1F3A]/60 font-medium leading-relaxed">
           {subtitle}
         </p>
-        <div className="mt-10">
-          <Button asChild size="lg" className="px-10 py-7 text-lg font-black rounded-xl bg-[#0B1F3A] text-white hover:bg-black transition-all">
+        <div className="mt-8 md:mt-10">
+          <Button asChild size="lg" className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-black rounded-lg bg-[#0B1F3A] text-white hover:bg-black transition-all">
             <a href={ctaHref}>{ctaText}</a>
           </Button>
         </div>

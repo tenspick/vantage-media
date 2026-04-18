@@ -30,7 +30,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/70 backdrop-blur-md border border-card-border rounded-3xl shadow-sm;
+    @apply bg-white/70 backdrop-blur-md border border-card-border rounded-lg shadow-sm;
   }
 
   .premium-shadow {
@@ -45,11 +45,11 @@
   }
 
   .btn-primary {
-    @apply bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-[0_10px_20px_rgba(30,144,255,0.2)] hover:shadow-[0_15px_30px_rgba(30,144,255,0.4)] transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2;
+    @apply bg-text-main hover:bg-accent text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 shadow-[0_10px_20px_rgba(11,31,58,0.10)] hover:shadow-[0_15px_30px_rgba(30,144,255,0.20)] transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2;
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-secondary text-text-main px-8 py-4 rounded-xl font-semibold border border-card-border transition-all duration-300 shadow-sm transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2;
+    @apply bg-white hover:bg-secondary text-text-main px-8 py-4 rounded-lg font-semibold border border-card-border transition-all duration-300 shadow-sm transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2;
   }
 }
 
